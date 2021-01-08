@@ -1,0 +1,22 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: sufyaniqbal
+  password: s$$4102481$$S
+
+development:
+  <<: *default
+  database: apppsql_development
+
+test:
+  <<: *default
+  database: apppsql_test
+
+production:
+  <<: *default
+  database: apppsql_production
+  username: apppsql
+  password: <%= ENV['APPPSQL_DATABASE_PASSWORD'] %>
