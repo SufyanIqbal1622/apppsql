@@ -10,16 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_07_191033) do
+ActiveRecord::Schema.define(version: 2021_01_15_122123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "students", force: :cascade do |t|
+  create_table "employes", force: :cascade do |t|
     t.string "name"
+    t.string "possition"
+    t.integer "sallery"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "joinning_date"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "contect"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "students", force: :cascade do |t|
     t.integer "rollnumber"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "occpation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "products", "users"
 end
